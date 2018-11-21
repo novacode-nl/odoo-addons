@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!-- Copyright 2018 Nova Code (http://www.novacode.nl)
-License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html) -->
+See LICENSE file for full copyright and licensing details. -->
 
 <odoo>
     <record id="view_task_search_form_deadline_filters" model="ir.ui.view">
