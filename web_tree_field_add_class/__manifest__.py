@@ -4,7 +4,7 @@
 {
     'name': 'Add class (HTML) to field in tree views',
     'summary': 'Add class (HTML) to field in tree views',
-    'category': 'Hidden/Dependency',
+    'category': 'Extra Tools',
     'version': '1.0',
     'depends': ['web'],
     'author': 'Nova Code',
