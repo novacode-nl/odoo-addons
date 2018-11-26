@@ -2,9 +2,9 @@
 # Copyright 2018 Nova Code (http://www.novacode.nl)
 # See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Add class (HTML) to any field in tree views',
-    'summary': 'Add class (HTML) to any field in tree views',
-    'category': 'Hidden/Dependency',
+    'name': 'Add class (HTML) to field in tree views',
+    'summary': 'Add class (HTML) to field in tree views',
+    'category': 'Extra Tools',
     'version': '1.0',
     'depends': ['web'],
     'author': 'Nova Code',
