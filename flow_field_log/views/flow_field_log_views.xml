@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2018 Nova Code (http://www.novacode.nl)
+See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+    <record id="view_flow_field_log_line_tree" model="ir.ui.view">
+        <field name="name">flow.field.log.line.tree</field>
+        <field name="model">flow.field.log.line</field>
+        <field name="arch" type="xml">
+            <tree string="Field Log">
+                <field name="model_id"/>
+                <field name="field_id"/>
+                <field name="old_value_boolean"/>
+                <field name="new_value_boolean"/>
+                <field name="old_value_char"/>
+                <field name="new_value_char"/>
+                <field name="old_value_date"/>
+                <field name="new_value_date"/>
+                <field name="old_value_datetime"/>
+                <field name="new_value_datetime"/>
+                <field name="old_value_float"/>
+                <field name="new_value_float"/>
+                <field name="old_value_integer"/>
+                <field name="new_value_integer"/>
+                <field name="log_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_flow_field_log_line_search" model="ir.ui.view">
+	<field name="name">flow.field.log.line: search</field>
+	<field name="model">flow.field.log.line</field>
+	<field name="type">search</field>
+	<field name="arch" type="xml">
+	    <search string="Flow Field Log Lines">
+		<field name="field_id"/>
+                <field name="model_id"/>
+		<group expand="0" string="Group By">
+	            <filter string="Field" domain="[]" context="{'group_by': 'field_id'}"/>
+	            <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
+                </group>
+            </search>
+	</field>
+    </record>
+
+    <record id="view_flow_field_log_line_form" model="ir.ui.view">
+        <field name="name">flow.field.log.line: form</field>
+        <field name="model">flow.field.log.line</field>
+        <field name="arch" type="xml">
+	    <form string="Field Log Line">
+                <sheet>
+                    <group name="field" sting="Field">
+                        <field name="model_id"/>
+                        <field name="field_id"/>
+                        <field name="field_type"/>
+                        <field name="log_date"/>
+                    </group>
+                    <group name="boolean" attrs="{'invisible': [('field_type', '!=', 'boolean')]}">
+                        <field name="old_value_boolean"/>
+                        <field name="new_value_boolean"/>
+                    </group>
+                    <group name="char" attrs="{'invisible': [('field_type', '!=', 'char')]}">
+                        <field name="old_value_char"/>
+                        <field name="new_value_char"/>
+                    </group>
+                    <group name="date" attrs="{'invisible': [('field_type', '!=', 'date')]}">
+                        <field name="old_value_date"/>
+                        <field name="new_value_date"/>
+                    </group>
+                    <group name="datetime" attrs="{'invisible': [('field_type', '!=', 'datetime')]}">
+                        <field name="old_value_datetime"/>
+                        <field name="new_value_datetime"/>
+                    </group>
+                    <group name="datetime" attrs="{'invisible': [('field_type', '!=', 'float')]}">
+                        <field name="old_value_float"/>
+                        <field name="new_value_float"/>
+                    </group>
+                    <group name="datetime" attrs="{'invisible': [('field_type', '!=', 'integer')]}">
+                        <field name="old_value_integer"/>
+                        <field name="new_value_integer"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_flow_field_log_line" model="ir.actions.act_window">
+        <field name="name">Field Log Lines</field>
+        <field name="res_model">flow.field.log.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_flow_field_log_line_tree"/>
+    </record>
+
+    <menuitem
+        id="menu_flow_field_log_root"
+        name="Flow Field Logs"
+        parent="base.menu_custom"
+        sequence="20"/>
+
+    <menuitem
+        id="menu_flow_field_log_line"
+        name="Field Log Lines"
+        parent="flow_field_log.menu_flow_field_log_root"
+        sequence="10"
+        action="action_flow_field_log_line"/>
+</odoo>
