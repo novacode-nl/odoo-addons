@@ -3,7 +3,7 @@
 # See LICENSE file for full copyright and licensing details.
 {
     'name': 'Project Task - Deadline Search Filters',
-    'summary': 'Filter Project Tasks by Deadline before/after today, next weeks(s).',
+    'summary': 'Filter Project Tasks by Deadline from today, next weeks(s).',
     'category': 'Project Management',
     'version': '1.0',
     'author': 'Nova Code',
