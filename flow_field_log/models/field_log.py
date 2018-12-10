@@ -23,7 +23,11 @@ class FieldLog(models.AbstractModel):
                 domain = [('name', '=', f), ('model_id.model', '=', self._name)]
                 field = self.env['ir.model.fields'].search(domain, limit=1)
                 # Prepare vals for fieldlog.
-                fieldlog_vals = {'model_id': model.id, 'field_id': field.id}
+                fieldlog_vals = {
+                    'model_id': model.id,
+                    'res_id': self.id,
+                    'field_id': field.id
+                }
                 if field.ttype == 'boolean':
                     fieldlog_vals['old_value_boolean'] = getattr(self, field.name)
                     fieldlog_vals['new_value_boolean'] = vals.get(f)
@@ -41,8 +45,9 @@ class FieldLogLine(models.Model):
     _description = 'Flow: Field log line'
     _rec_name = 'field_id'
 
-    model_id = fields.Many2one('ir.model')
-    field_id = fields.Many2one('ir.model.fields')
+    model_id = fields.Many2one('ir.model', required=True)
+    res_id = fields.Integer(required=True)
+    field_id = fields.Many2one('ir.model.fields', required=True)
     field_type = fields.Selection(related='field_id.ttype')
     old_value_boolean = fields.Boolean()
     new_value_boolean = fields.Boolean()
