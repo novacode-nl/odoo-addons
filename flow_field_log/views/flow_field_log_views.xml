@@ -23,6 +23,8 @@ See LICENSE file for full copyright and licensing details. -->
                 <field name="new_value_float"/>
                 <field name="old_value_integer"/>
                 <field name="new_value_integer"/>
+                <field name="old_value_selection"/>
+                <field name="new_value_selection"/>
                 <field name="log_date"/>
             </tree>
         </field>
@@ -73,13 +75,17 @@ See LICENSE file for full copyright and licensing details. -->
                         <field name="old_value_datetime"/>
                         <field name="new_value_datetime"/>
                     </group>
-                    <group name="datetime" attrs="{'invisible': [('field_type', '!=', 'float')]}">
+                    <group name="float" attrs="{'invisible': [('field_type', '!=', 'float')]}">
                         <field name="old_value_float"/>
                         <field name="new_value_float"/>
                     </group>
-                    <group name="datetime" attrs="{'invisible': [('field_type', '!=', 'integer')]}">
+                    <group name="integer" attrs="{'invisible': [('field_type', '!=', 'integer')]}">
                         <field name="old_value_integer"/>
                         <field name="new_value_integer"/>
+                    </group>
+                    <group name="selection" attrs="{'invisible': [('field_type', '!=', 'selection')]}">
+                        <field name="old_value_selection"/>
+                        <field name="new_value_selection"/>
                     </group>
                 </sheet>
             </form>

@@ -32,6 +32,10 @@ class FieldLog(models.AbstractModel):
                     fieldlog_vals['old_value_boolean'] = getattr(self, field.name)
                     fieldlog_vals['new_value_boolean'] = vals.get(f)
                     fieldlog.append(fieldlog_vals)
+                elif field.ttype == 'selection':
+                    fieldlog_vals['old_value_selection'] = getattr(self, field.name)
+                    fieldlog_vals['new_value_selection'] = vals.get(f)
+                    fieldlog.append(fieldlog_vals)
         res = super(FieldLog, self).write(vals)
         if self.write_date and fieldlog:
             for fl_vals in fieldlog:
@@ -61,6 +65,8 @@ class FieldLogLine(models.Model):
     new_value_float = fields.Float()
     old_value_integer = fields.Integer()
     new_value_integer = fields.Integer()
+    old_value_selection = fields.Char()
+    new_value_selection = fields.Char()
     log_date = fields.Datetime()
 
     def get_last(self, model_id, field_id, add_domain=[]):
