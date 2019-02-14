@@ -12,19 +12,47 @@ class FieldLog(models.AbstractModel):
     def _flow_fields_log(self):
         return []
 
-    @api.multi
-    def write(self, vals):
-        model = False
+    @api.model
+    def create(self, vals):
+        # TODO refactor with redundant code in write func.
+        res = super(FieldLog, self).create(vals)
         fieldlog = []
         for f in self._flow_fields_log():
             if f in vals:
-                if not model:
-                    model = self.env.ref('helpdesk.model_helpdesk_ticket')
                 domain = [('name', '=', f), ('model_id.model', '=', self._name)]
                 field = self.env['ir.model.fields'].search(domain, limit=1)
                 # Prepare vals for fieldlog.
                 fieldlog_vals = {
-                    'model_id': model.id,
+                    'model_id': field.model_id.id,
+                    'res_id': res.id,
+                    'field_id': field.id,
+                    'log_date': res.create_date
+                }
+                if field.ttype == 'boolean':
+                    fieldlog_vals['old_value_boolean'] = None
+                    fieldlog_vals['new_value_boolean'] = vals.get(f)
+                    fieldlog.append(fieldlog_vals)
+                elif field.ttype == 'selection':
+                    fieldlog_vals['old_value_selection'] = None
+                    fieldlog_vals['new_value_selection'] = vals.get(f)
+                    fieldlog.append(fieldlog_vals)
+
+        if fieldlog:
+            for fl_vals in fieldlog:
+                self.env['flow.field.log.line'].create(fl_vals)
+        return res
+
+    @api.multi
+    def write(self, vals):
+        # TODO refactor with redundant code in create func.
+        fieldlog = []
+        for f in self._flow_fields_log():
+            if f in vals:
+                domain = [('name', '=', f), ('model_id.model', '=', self._name)]
+                field = self.env['ir.model.fields'].search(domain, limit=1)
+                # Prepare vals for fieldlog.
+                fieldlog_vals = {
+                    'model_id': field.model_id.id,
                     'res_id': self.id,
                     'field_id': field.id
                 }
