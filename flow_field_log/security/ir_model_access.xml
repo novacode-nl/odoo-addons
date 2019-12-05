@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright Nova Code (http://www.novacode.nl)
+See LICENSE file for full copyright and licensing details. -->
+
+<odoo>
+    <data>
+        <record id="access_flow_field_log_line_all" model="ir.model.access">
+            <field name="name">flow.field.log.line.all</field>
+            <field name="model_id" ref="flow_field_log.model_flow_field_log_line"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+    </data>
+</odoo>
