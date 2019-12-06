@@ -32,11 +32,10 @@ class MailTemplate(models.Model):
             body += results['body_html']
             results['body_html'] = body
         if self.print_ref and 'body_html' in results:
-            ref = self._print_ref()
-            results['body_html'] += ref
+            results['body_html'] += self._print_ref()
         results['body'] = results['body_html']
         return results
 
     def _print_ref(self):
-        ref = '<div id="mail_mail_template_ref" class="mt32"><small>(template: %s)</small></div>' % self.id
+        ref = '<div id="mail_mail_template_ref" class="mt32"><small>(template ID: %s)</small></div>' % self.id
         return ref
