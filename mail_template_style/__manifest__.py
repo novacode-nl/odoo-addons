@@ -2,10 +2,10 @@
 # Copyright Nova Code (http://www.novacode.nl)
 # See LICENSE file for full copyright and licensing details.
 {
-    'name': 'Mail Template Styling',
+    'name': 'Mail Template Styles',
     'version': '1.0',
     'category': 'Discuss',
-    'summary': 'Manange and load Mail Template Styles (CSS)',
+    'summary': 'Style Mail Templates with CSS you manage in Odoo',
     'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
     'license': 'LGPL-3',
