@@ -6,7 +6,7 @@
     'version': '1.0',
     'category': 'Discuss',
     'summary': 'Show (and search) External ID in list and form views of Mail templates.',
-    'author': 'Bob Leers <bob@novacode.nl>',
+    'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
     'license': 'LGPL-3',
     'depends': ['mail'],
