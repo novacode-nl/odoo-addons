@@ -4,6 +4,8 @@
 
 import logging
 
+from premailer import transform
+
 from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
@@ -31,11 +33,12 @@ class MailTemplate(models.Model):
             return results
 
         if self.print_ref:
-            results['body'] += self._print_ref()
             results['body_html'] += self._print_ref()
 
-        body_html = '<style>%s</style>' % self.style_id.css
+        body_html = '<style type="text/css">%s</style>' % self.style_id.css
         body_html += results['body_html']
+        # premailer (transform) generates inline CSS/style attributes.
+        body_html = transform(body_html, allow_network=False)
 
         results['body'] = body_html
         results['body_html'] = body_html
@@ -43,20 +46,5 @@ class MailTemplate(models.Model):
         return results
 
     def _print_ref(self):
-        ref = '<div id="mail_mail_template_ref" class="mt32"><small>(template ID: %s)</small></div>' % self.id
+        ref = '<div id="mail_mail_template_ref"><p>(%s: %s)</p></div>' % (_('template ID'), self.id)
         return ref
-
-
-class MailMail(models.Model):
-    _inherit = 'mail.mail'
-
-    @api.multi
-    def send_get_mail_body(self, partner=None):
-        self.ensure_one()
-        body_html = self.body_html or ''
-
-        if '<style>' in body_html and '</style>' in body_html:
-            body_html = body_html.replace('<style>', '<head><style>')
-            body_html = body_html.replace('</style>', '</style></head><body>')
-            body_html = '<html>{body_html}</body></html>'.format(body_html=body_html)
-        return body_html

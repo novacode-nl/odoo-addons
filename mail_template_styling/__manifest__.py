@@ -10,6 +10,7 @@
     'website': 'https://www.novacode.nl',
     'license': 'LGPL-3',
     'depends': ['mail'],
+    'external_dependencies': {'python': ['premailer']},
     'data': [
         'views/mail_template_style_views.xml',
         'views/mail_template_views.xml'
