@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright Nova Code (http://www.novacode.nl)
+See LICENSE file for full copyright and licensing details.
+-->
+<odoo>
+    <data>
+        <record id="email_template_tree_inherit" model="ir.ui.view">
+            <field name="name">email.template.tree: style</field>
+            <field name="model">mail.template</field>
+            <field name="inherit_id" ref="mail.email_template_tree"/>
+            <field name="arch" type="xml">
+                <field name="partner_to" position="after">
+                    <field name="module_name"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="email_template_form_inherit" model="ir.ui.view">
+            <field name="name">email.template.form: peeters</field>
+            <field name="model">mail.template</field>
+            <field name="inherit_id" ref="mail.email_template_form"/>
+            <field name="arch" type="xml">
+                <field name="model_id" position="after">
+                    <field name="module_name"/>
+                    <field name="xmlid"/>
+                </field>
+            </field>
+        </record>
+        
+        <record  id="view_email_template_search_inherit" model="ir.ui.view">
+            <field name="name">email.template.search: style</field>
+            <field name="model">mail.template</field>
+            <field name="inherit_id" ref="mail.view_email_template_search"/>
+            <field name="arch" type="xml">
+                <field name="model_id" position="after">
+                    <field name="module_name"/>
+                    <field name="xmlid"/>
+                </field>
+                <xpath expr="//group" position="inside">
+                    <filter string="Module" domain="[]" context="{'group_by':'module_name'}"/>
+                    <filter string="XML ID" domain="[]" context="{'group_by':'xmlid'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_update_external_id" model="ir.actions.server">
+            <field name="name">Update External/XML ID</field>
+            <field name="model_id" ref="model_mail_template"/>
+            <field name="binding_model_id" ref="mail.model_mail_template"/>
+            <field name="state">code</field>
+            <field name="code">
+                records.action_update_external_id()
+            </field>
+        </record>
+    </data>
+</odoo>
