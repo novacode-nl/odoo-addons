@@ -46,12 +46,23 @@ See LICENSE file for full copyright and licensing details.
 
         <record id="action_update_external_id" model="ir.actions.server">
             <field name="name">Update External/XML ID</field>
+            <field name="condition">True</field>
+            <field name="type">ir.actions.server</field>
             <field name="model_id" ref="model_mail_template"/>
-            <field name="binding_model_id" ref="mail.model_mail_template"/>
             <field name="state">code</field>
             <field name="code">
                 records.action_update_external_id()
             </field>
+        </record>
+
+        <record id="update_external_id" model="ir.values" >
+            <field name="name">Update External/XML ID</field>
+            <field name="action_id" ref="action_update_external_id"/>
+            <field name="value" eval="'ir.actions.server,' + str(ref('action_update_external_id'))"/>
+            <field name="key">action</field>
+            <field name="model_id" ref="model_mail_template" />
+            <field name="model">mail.template</field>
+            <field name="key2">client_action_multi</field>
         </record>
     </data>
 </odoo>
