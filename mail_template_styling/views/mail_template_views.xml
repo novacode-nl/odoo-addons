@@ -12,6 +12,7 @@ See LICENSE file for full copyright and licensing details.
             <field name="arch" type="xml">
                 <field name="partner_to" position="after">
                     <field name="style_id"/>
+                    <field name="strip_inline_style"/>
                     <field name="print_ref"/>
                 </field>
             </field>
@@ -24,8 +25,13 @@ See LICENSE file for full copyright and licensing details.
             <field name="arch" type="xml">
                 <field name="attachment_ids" position="before">
                     <group>
-                        <field name="print_ref"/>
-                        <field name="style_id"/>
+                        <group>
+                            <field name="print_ref"/>
+                        </group>
+                        <group cols="2" colspan="2">
+                            <field name="strip_inline_style"/>
+                            <field name="style_id"/>
+                        </group>
                     </group>
                     <p attrs="{'invisible': [('style_id', '=', False)]}"><i class="fa fa-lg fa-info-circle"/><em> Use Preview to view the rendering result with Style.</em></p>
                 </field>
@@ -42,6 +48,9 @@ See LICENSE file for full copyright and licensing details.
                     <separator/>
                     <filter string="With Style (CSS)" domain="[('style_id', '!=', False)]" name="with_style"/>
                     <filter string="No Style (CSS)" domain="[('style_id', '=', False)]" name="no_style"/>
+                    <separator/>
+                    <filter string="Strip Inline Style (CSS)" domain="[('strip_inline_style', '!=', False)]" name="strip_inline_style"/>
+                    <filter string="Don't Strip Inline Style (CSS)" domain="[('strip_inline_style', '=', False)]" name="no_strip_inline_style"/>
                     <separator/>
                     <filter string="Print Reference" domain="[('print_ref', '!=', False)]" name="with_print_ref"/>
                     <filter string="Don't print Reference" domain="[('print_ref', '=', False)]" name="no_print_ref"/>
