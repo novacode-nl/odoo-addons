@@ -33,7 +33,7 @@ See LICENSE file for full copyright and licensing details.
                             <field name="style_id"/>
                         </group>
                     </group>
-                    <p attrs="{'invisible': [('style_id', '=', False)]}"><i class="fa fa-lg fa-info-circle"/><em> Use Preview to view the rendering result with Style.</em></p>
+                    <p attrs="{'invisible': [('style_id', '=', False)]}"><i class="fa fa-lg fa-info-circle"/><em> Use Preview to view the rendering result with Styling alterations.</em></p>
                 </field>
             </field>
         </record>
