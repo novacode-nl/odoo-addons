@@ -7,8 +7,8 @@ import logging
 from premailer import transform
 
 from odoo import _, api, fields, models
+from odoo.tools import html_sanitize
 
-_logger = logging.getLogger(__name__)
 
 class MailTemplateStyle(models.Model):
     _name = 'mail.template.style'
@@ -22,23 +22,29 @@ class MailTemplate(models.Model):
     _inherit = 'mail.template'
 
     style_id = fields.Many2one('mail.template.style', string="Style (CSS)")
+    strip_inline_style = fields.Boolean(string='Strip Inline Style (CSS)')
     print_ref = fields.Boolean(string='Print Reference', track_visibility='onchange')
+
 
     @api.multi
     def generate_email(self, res_ids, fields=None):
         self.ensure_one()
         results = super(MailTemplate, self).generate_email(res_ids, fields)
 
-        if not self.style_id or 'body_html' not in results:
+        if 'body_html' not in results:
             return results
 
-        if self.print_ref:
-            results['body_html'] += self._print_ref()
+        body_html = results['body_html']
 
-        body_html = '<style type="text/css">%s</style>' % self.style_id.css
-        body_html += results['body_html']
-        # premailer (transform) generates inline CSS/style attributes.
-        body_html = transform(body_html, allow_network=False)
+        if self.strip_inline_style:
+            # Just do: strip_style=True
+            body_html = html_sanitize(body_html, sanitize_tags=False, sanitize_attributes=False, sanitize_style=False, strip_style=True)
+        if self.print_ref:
+            body_html += self._print_ref()
+        if self.style_id:
+            body_html = '<style type="text/css">%s</style>%s' % (self.style_id.css, body_html)
+            # premailer (transform) generates inline CSS/style attributes.
+            body_html = transform(body_html, allow_network=False)
 
         results['body'] = body_html
         results['body_html'] = body_html
