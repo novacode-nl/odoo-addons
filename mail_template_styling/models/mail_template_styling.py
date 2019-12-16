@@ -21,8 +21,11 @@ class MailTemplateStyle(models.Model):
 class MailTemplate(models.Model):
     _inherit = 'mail.template'
 
-    style_id = fields.Many2one('mail.template.style', string="Style (CSS)")
-    strip_inline_style = fields.Boolean(string='Strip Inline Style (CSS)')
+    style_id = fields.Many2one('mail.template.style', string="Stylesheet")
+    strip_inline_style = fields.Boolean(
+        string='Strip Inline Style',
+        help="""Remove inline style (CSS attributes) during rendering-time. Just post-processing, which ain't stored."""
+)
     print_ref = fields.Boolean(string='Print Reference', track_visibility='onchange')
 
 
