@@ -5,7 +5,7 @@
     'name': 'Mail Template - Styling',
     'version': '2.0',
     'category': 'Discuss',
-    'summary': 'Globally manage and style mail templates send from Odoo',
+    'summary': 'Universally manage and style mail templates send from Odoo',
     'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
     'license': 'LGPL-3',
