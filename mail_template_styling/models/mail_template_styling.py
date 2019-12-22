@@ -28,8 +28,6 @@ class MailTemplate(models.Model):
 )
     print_ref = fields.Boolean(string='Print Reference', track_visibility='onchange')
 
-
-    @api.multi
     def generate_email(self, res_ids, fields=None):
         self.ensure_one()
         results = super(MailTemplate, self).generate_email(res_ids, fields)

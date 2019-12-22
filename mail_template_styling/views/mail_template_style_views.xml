@@ -40,11 +40,15 @@ See LICENSE file for full copyright and licensing details.
             <field name="name">Template Styles</field>
             <field name="res_model">mail.template.style</field>
             <field name="view_type">form</field>
-            <field name="view_mode">form,tree</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="view_mail_template_style_tree" />
         </record>
 
-        <menuitem id="menu_mail_template_styles" parent="base.menu_email" action="action_mail_template_style"
-                  sequence="20"/>
+        <menuitem
+            id="menu_mail_template_styles"
+            name="Template Styles"
+            pparent="base.menu_email"
+            action="action_mail_template_style"
+            sequence="20"/>
     </data>
 </odoo>

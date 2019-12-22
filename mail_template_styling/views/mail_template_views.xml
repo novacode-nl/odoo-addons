@@ -33,7 +33,9 @@ See LICENSE file for full copyright and licensing details.
                             <field name="style_id"/>
                         </group>
                     </group>
-                    <p attrs="{'invisible': [('style_id', '=', False)]}"><i class="fa fa-lg fa-info-circle"/><em> Use Preview to view the rendering result with Styling alterations.</em></p>
+                    <p attrs="{'invisible': [('style_id', '=', False)]}">
+                        <i class="fa fa-lg fa-info-circle" aria-label="Preview with style info" title="Preview with style info"/><em> Use Preview to view the rendering result with Styling alterations.</em>
+                    </p>
                 </field>
             </field>
         </record>
@@ -57,7 +59,7 @@ See LICENSE file for full copyright and licensing details.
                 </field>
 
                 <xpath expr="//group" position="inside">
-                    <filter string="Style (CSS)" domain="[]" context="{'group_by':'style_id'}"/>
+                    <filter string="Style (CSS)" name="style" domain="[]" context="{'group_by':'style_id'}"/>
                 </xpath>
             </field>
         </record>
