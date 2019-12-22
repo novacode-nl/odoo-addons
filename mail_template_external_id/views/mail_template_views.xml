@@ -28,7 +28,7 @@ See LICENSE file for full copyright and licensing details.
             </field>
         </record>
         
-        <record  id="view_email_template_search_inherit" model="ir.ui.view">
+        <record id="view_email_template_search_inherit" model="ir.ui.view">
             <field name="name">email.template.search: style</field>
             <field name="model">mail.template</field>
             <field name="inherit_id" ref="mail.view_email_template_search"/>
@@ -38,8 +38,8 @@ See LICENSE file for full copyright and licensing details.
                     <field name="xmlid"/>
                 </field>
                 <xpath expr="//group" position="inside">
-                    <filter string="Module" domain="[]" context="{'group_by':'module_name'}"/>
-                    <filter string="XML ID" domain="[]" context="{'group_by':'xmlid'}"/>
+                    <filter string="Module" name="module" domain="[]" context="{'group_by':'module_name'}"/>
+                    <filter string="XML ID" name="xmlid" domain="[]" context="{'group_by':'xmlid'}"/>
                 </xpath>
             </field>
         </record>

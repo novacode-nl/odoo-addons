@@ -11,7 +11,6 @@ class MailTemplate(models.Model):
     module_name = fields.Char(string='Module')
     xmlid = fields.Char(string='XML ID')
 
-    @api.multi
     def action_update_external_id(self):
         for r in self:
             ext_id = r.get_external_id()
