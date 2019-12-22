@@ -33,15 +33,14 @@ See LICENSE file for full copyright and licensing details. -->
     <record id="view_flow_field_log_line_search" model="ir.ui.view">
 	<field name="name">flow.field.log.line: search</field>
 	<field name="model">flow.field.log.line</field>
-	<field name="type">search</field>
 	<field name="arch" type="xml">
 	    <search string="Flow Field Log Lines">
 		<field name="field_id"/>
                 <field name="model_id"/>
                 <field name="res_id"/>
-		<group expand="0" string="Group By">
-	            <filter string="Field" domain="[]" context="{'group_by': 'field_id'}"/>
-	            <filter string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
+		<group string="Group By">
+	            <filter name="field" string="Field" domain="[]" context="{'group_by': 'field_id'}"/>
+	            <filter name="model" string="Model" domain="[]" context="{'group_by': 'model_id'}"/>
                 </group>
             </search>
 	</field>
