@@ -12,5 +12,8 @@
     'depends': ['mail'],
     'data': [
         'views/mail_template_views.xml',
+    ],
+    'images': [
+        'static/description/banner.png',
     ]
 }
