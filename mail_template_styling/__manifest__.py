@@ -12,6 +12,7 @@
     'depends': ['mail'],
     'external_dependencies': {'python': ['premailer']},
     'data': [
+        'security/ir.model.access.csv',
         'views/mail_template_style_views.xml',
         'views/mail_template_views.xml'
     ],
