@@ -5,7 +5,7 @@
 {
     'name': 'Flow Field Log',
     'summary': 'Log field changes old/new value',
-    'version': '1.0',
+    'version': '0.2',
     'author': 'Nova Code',
     'website': 'https://www.novacode.nl',
     'license': "LGPL-3",
