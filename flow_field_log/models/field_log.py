@@ -111,8 +111,9 @@ class FieldLogLine(models.Model):
     new_value_selection = fields.Char()
     log_date = fields.Datetime()
 
-    def get_last(self, model_id, field_id, add_domain=[]):
-        domain = [('model_id', '=', model_id), ('field_id', '=', field_id)]
+
+    def get_last(self, model_id, res_id, field_id, add_domain=[]):
+        domain = [('model_id', '=', model_id), ('res_id', '=', res_id), ('field_id', '=', field_id)]
         if add_domain:
             [domain.append(_filter) for _filter in add_domain]
         res = self.search(domain, limit=1, order='create_date DESC')
