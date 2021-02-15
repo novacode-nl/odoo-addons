@@ -12,6 +12,7 @@
     'category': 'Extra Tools',
     'depends': ['base'],
     'application': False,
+    'installable': False,
     'data': [
         'security/ir_model_access.xml',
         'views/flow_field_log_views.xml'

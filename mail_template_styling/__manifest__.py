@@ -11,6 +11,7 @@
     'license': 'LGPL-3',
     'depends': ['mail'],
     'external_dependencies': {'python': ['premailer']},
+    'installable': False,
     'data': [
         'security/ir.model.access.csv',
         'views/mail_template_style_views.xml',

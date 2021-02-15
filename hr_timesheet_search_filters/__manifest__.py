@@ -11,6 +11,7 @@
     'depends': [
         'hr_timesheet'
     ],
+    'installable': False,
     'data': [
         'views/project_task_views.xml'
     ]
