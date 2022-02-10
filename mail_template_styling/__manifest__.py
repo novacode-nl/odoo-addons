@@ -3,7 +3,7 @@
 # See LICENSE file for full copyright and licensing details.
 {
     'name': 'Mail Template - Styling',
-    'version': '2.0',
+    'version': '2.1',
     'category': 'Discuss',
     'summary': 'Universally manage and style mail templates sent from Odoo',
     'author': 'Nova Code',
